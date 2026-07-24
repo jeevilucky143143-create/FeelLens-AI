@@ -1,6 +1,7 @@
 import base64
 import json
 import mimetypes
+import os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
@@ -12,8 +13,8 @@ from tensorflow.keras.models import load_model
 
 ROOT = Path(__file__).resolve().parent
 FRONTEND_DIR = ROOT / "frontend"
-HOST = "127.0.0.1"
-PORT = 8000
+HOST = "0.0.0.0"
+PORT = int(os.environ.get("PORT", 8000))
 IMAGE_SIZE = (48, 48)
 CONFIDENCE_THRESHOLD = 0.6
 
