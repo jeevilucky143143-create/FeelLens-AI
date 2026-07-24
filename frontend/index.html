@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Face Emotion Detection</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="camera-panel" aria-label="Emotion detector">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Real-time CNN inference</p>
+            <h1>Face Emotion Detection</h1>
+          </div>
+          <div class="status-pill" id="statusPill">Model ready</div>
+        </header>
+
+        <div class="stage" id="stage">
+          <video id="video" autoplay playsinline muted></video>
+          <img id="previewImage" alt="Uploaded preview">
+          <canvas id="overlay"></canvas>
+          <div class="empty-state" id="emptyState">
+            <strong>Start the camera or upload a face image</strong>
+            <span>The detector runs locally through the Python backend.</span>
+          </div>
+        </div>
+
+        <div class="toolbar" aria-label="Controls">
+          <button id="cameraButton" type="button">Start camera</button>
+          <button id="captureButton" type="button" disabled>Analyze frame</button>
+          <label class="toggle">
+            <input id="liveToggle" type="checkbox" disabled>
+            <span>Live</span>
+          </label>
+          <label class="file-button">
+            Upload image
+            <input id="fileInput" type="file" accept="image/*">
+          </label>
+        </div>
+      </section>
+
+      <aside class="results-panel" aria-label="Detection results">
+        <div class="summary">
+          <span class="summary-label">Current result</span>
+          <strong id="primaryEmotion">No face detected</strong>
+          <span id="primaryConfidence">Waiting for input</span>
+        </div>
+
+        <div class="metrics">
+          <div>
+            <span>Faces</span>
+            <strong id="faceCount">0</strong>
+          </div>
+          <div>
+            <span>Latency</span>
+            <strong id="latency">-- ms</strong>
+          </div>
+        </div>
+
+        <div class="probability-list" id="probabilityList"></div>
+      </aside>
+    </main>
+
+    <canvas id="captureCanvas" hidden></canvas>
+    <script src="/app.js"></script>
+  </body>
+</html>
