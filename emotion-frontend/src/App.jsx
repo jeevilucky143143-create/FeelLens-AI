@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { useState, createContext } from 'react'
+import { useState, useEffect, createContext } from 'react'
 import Navbar from './components/Navbar'
 import Landing from './pages/Landing'
 import Detection from './pages/Detection'
@@ -20,6 +20,11 @@ function App() {
     cameraId: '',
   })
 
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    document.body.setAttribute('data-theme', theme)
+  }, [theme])
+
   const toggleTheme = () => {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark')
   }
@@ -33,7 +38,7 @@ function App() {
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <HistoryContext.Provider value={{ history, addToHistory, clearHistory, settings, setSettings }}>
-        <div data-theme={theme} style={{ minHeight: '100vh' }}>
+        <div data-theme={theme} style={{ minHeight: '100vh', backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)', transition: 'background-color 0.3s ease, color 0.3s ease' }}>
           <Router>
             <Navbar />
             <Routes>

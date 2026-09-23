@@ -48,6 +48,9 @@ MODEL, FACE_DETECTOR, MODEL_NAME = load_detector()
 
 
 def decode_image(data_url):
+    if not isinstance(data_url, str) or not data_url.strip():
+        raise ValueError("Image data is required.")
+
     if "," in data_url:
         data_url = data_url.split(",", 1)[1]
 
@@ -59,6 +62,7 @@ def decode_image(data_url):
         raise ValueError("Could not decode image payload.")
 
     return frame
+
 
 
 def predict_emotions(frame):
@@ -106,6 +110,13 @@ def predict_emotions(frame):
 
 
 class EmotionRequestHandler(BaseHTTPRequestHandler):
+    def do_OPTIONS(self):
+        self.send_response(204)
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization")
+        self.end_headers()
+
     def do_GET(self):
         parsed_path = urlparse(self.path).path
 
@@ -164,6 +175,9 @@ class EmotionRequestHandler(BaseHTTPRequestHandler):
         self.send_response(status)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(content)))
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization")
         self.end_headers()
         self.wfile.write(content)
 

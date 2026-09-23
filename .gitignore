@@ -1,5 +1,19 @@
+# Python
 venv/
 data/
 __pycache__/
 *.pyc
 .DS_Store
+
+# Frontend
+node_modules/
+dist/
+dist-ssr/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Datasets (training data not required for inference deployment)
+dataset/

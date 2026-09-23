@@ -1,12 +1,9 @@
 tensorflow-macos==2.15.0; sys_platform == 'darwin'
 tensorflow-metal==1.2.0; sys_platform == 'darwin'
-tensorflow==2.15.0; sys_platform != 'darwin'
+tensorflow-cpu==2.15.0; sys_platform != 'darwin'
 keras==2.15.0
 numpy==1.26.4
 opencv-python==4.8.1.78; sys_platform == 'darwin'
 opencv-python-headless==4.8.1.78; sys_platform != 'darwin'
-matplotlib==3.7.5
 pillow==10.4.0
-scikit-learn==1.5.2
-pandas==2.2.3
 h5py==3.14.0

@@ -26,16 +26,17 @@
   --color-neutral: #6b7280;
 }
 
-[data-theme="light"] {
+[data-theme="light"],
+html[data-theme="light"] {
   --bg-primary: #f8f9fc;
   --bg-secondary: #ffffff;
-  --bg-card: rgba(255, 255, 255, 0.8);
-  --bg-glass: rgba(255, 255, 255, 0.6);
-  --text-primary: #1a1a2e;
-  --text-secondary: #4b5563;
-  --text-muted: #9ca3af;
-  --border-color: rgba(0, 0, 0, 0.08);
-  --shadow-glow: 0 0 30px rgba(139, 92, 246, 0.1);
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-glass: rgba(0, 0, 0, 0.05);
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 4px 20px rgba(139, 92, 246, 0.08);
 }
 
 /* ──────── Base Styles ──────── */
@@ -47,6 +48,8 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 body {
@@ -61,17 +64,24 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
 }
 
 /* ──────── Glass Card ──────── */
 .glass-card {
   background: var(--bg-card);
+  color: var(--text-primary);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--border-color);
   border-radius: 16px;
   box-shadow: var(--shadow-glow);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .glass-card:hover {
